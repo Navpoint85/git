@@ -60,13 +60,13 @@ except ValueError:
     exit()
 
 selected_text = TEXTS[text_index]
-words = selected_text.split()
+words = [word.strip(",.:;!?") for word in selected_text.split()]
 
 # Počítání slov
 word_count = len(words)
 titlecase_words = sum(1 for word in words if word.istitle())
-uppercase_words = sum(1 for word in words if word.isupper())
-lowercase_words = sum(1 for word in words if word.islower())
+uppercase_words = sum(1 for word in words if word.isupper() and word.isalpha())
+lowercase_words = sum(1 for word in words if word.islower() and word.isalpha())
 numeric_strings = [int(word) for word in words if word.isdigit()]
 numeric_sum = sum(numeric_strings)
 
