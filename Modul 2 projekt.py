@@ -8,11 +8,13 @@ email: mastnyj@seznam.cz
 import random
 import time
 
-# vygeneruje náhodné čtyřmístné číslo s unikátními číslicemi.
+# vygeneruje náhodné čtyřmístné číslo s unikátními číslicemi, které nezačíná nulou.
 def generate_secret_number():
-    digits = list("123456789")
-    random.shuffle(digits)
-    return "".join(digits[:4])
+    digits = list("0123456789")
+    while True:
+        random.shuffle(digits)
+        if digits[0] != '0':
+            return "".join(digits[:4])
 
 # ověří, zda jde o validní výběr čísla
 def is_valid_guess(guess):
@@ -36,6 +38,7 @@ def main():
     print("-----------------------------------------------")
 
     secret = generate_secret_number()
+    print (secret)
     # pro testovací účely "print (secret)""
     attempts = 0
     start_time = time.time()
